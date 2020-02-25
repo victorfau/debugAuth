@@ -2,7 +2,8 @@
 
 ## Configuration
 
-Pour configurer le projet, il faut se dupliquer le fichier ```.env.dist``` en ```.env``` et modifier ce nouveau fichier avec les valeurs souhaitées.
+Pour configurer le projet, il faut se dupliquer le fichier ```.env.dist``` en ```.env``` et modifier
+ ce nouveau fichier avec les valeurs souhaitées.
 
 Pour le moment, la seul ligne à modifier est la ligne ```DATABASE_URL```
 
@@ -13,3 +14,7 @@ git clone https://gitlab.com/arepexigences/arep-cms.git
 cd arep-cms
 composer install
 ```
+
+## Gestions des erreurs 
+
+Les erreurs sont générées avec la fonction de message flash intégré dans Symfony. 
