@@ -14,6 +14,15 @@ git clone https://gitlab.com/arepexigences/arep-cms.git
 cd arep-cms
 composer install
 ```
+## Les différents rôles
+
+Les différents rôles sont les suivants :
+
+| Rôle | Information |
+| ---- | ----------- |
+|ROLE_USER| Peut accéder à l'application et peut modifier le contenu le concernant |
+|ROLE_ADMIN| Peut accéder à l'application et peut modifier en profindeur le cotenu de l'application |
+|ROLE_DEV|Permet de pouvoir accéder à toute l'application sans distinction de droit.|
 
 ## Gestions des erreurs 
 
