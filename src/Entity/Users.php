@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -142,371 +144,381 @@ class Users implements UserInterface
 	 */
 	private $roles = [];
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Event", mappedBy="auteur")
+     */
+    private $events;
+
+    public function __construct()
+    {
+        $this->events = new ArrayCollection();
+    }
+
 	/**
 	 * @return mixed
 	 */
 	public function getId(){
-		return $this->id;
-	}
+                        		return $this->id;
+                        	}
 
 	/**
 	 * @param mixed $id
 	 */
 	public function setId($id): void{
-		$this->id = $id;
-	}
+                        		$this->id = $id;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getEmail(){
-		return $this->email;
-	}
+                        		return $this->email;
+                        	}
 
 	/**
 	 * @param mixed $email
 	 */
 	public function setEmail($email): void{
-		$this->email = $email;
-	}
+                        		$this->email = $email;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getPassword(){
-		return $this->password;
-	}
+                        		return $this->password;
+                        	}
 
 	/**
 	 * @param mixed $password
 	 */
 	public function setPassword($password): void{
-		$this->password = $password;
-	}
+                        		$this->password = $password;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getParticipation(){
-		return $this->participation;
-	}
+                        		return $this->participation;
+                        	}
 
 	/**
 	 * @param mixed $participation
 	 */
 	public function setParticipation($participation): void{
-		$this->participation = $participation;
-	}
+                        		$this->participation = $participation;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getCivilite(){
-		return $this->civilite;
-	}
+                        		return $this->civilite;
+                        	}
 
 	/**
 	 * @param mixed $civilite
 	 */
 	public function setCivilite($civilite): void{
-		$this->civilite = $civilite;
-	}
+                        		$this->civilite = $civilite;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getNom(){
-		return $this->nom;
-	}
+                        		return $this->nom;
+                        	}
 
 	/**
 	 * @param mixed $nom
 	 */
 	public function setNom($nom): void{
-		$this->nom = $nom;
-	}
+                        		$this->nom = $nom;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getPrenom(){
-		return $this->prenom;
-	}
+                        		return $this->prenom;
+                        	}
 
 	/**
 	 * @param mixed $prenom
 	 */
 	public function setPrenom($prenom): void{
-		$this->prenom = $prenom;
-	}
+                        		$this->prenom = $prenom;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getFonction(){
-		return $this->fonction;
-	}
+                        		return $this->fonction;
+                        	}
 
 	/**
 	 * @param mixed $fonction
 	 */
 	public function setFonction($fonction): void{
-		$this->fonction = $fonction;
-	}
+                        		$this->fonction = $fonction;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getMetier(){
-		return $this->metier;
-	}
+                        		return $this->metier;
+                        	}
 
 	/**
 	 * @param mixed $metier
 	 */
 	public function setMetier($metier): void{
-		$this->metier = $metier;
-	}
+                        		$this->metier = $metier;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getAdresse1(){
-		return $this->adresse1;
-	}
+                        		return $this->adresse1;
+                        	}
 
 	/**
 	 * @param mixed $adresse1
 	 */
 	public function setAdresse1($adresse1): void{
-		$this->adresse1 = $adresse1;
-	}
+                        		$this->adresse1 = $adresse1;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getAddress2(){
-		return $this->address2;
-	}
+                        		return $this->address2;
+                        	}
 
 	/**
 	 * @param mixed $address2
 	 */
 	public function setAddress2($address2): void{
-		$this->address2 = $address2;
-	}
+                        		$this->address2 = $address2;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getVille(){
-		return $this->ville;
-	}
+                        		return $this->ville;
+                        	}
 
 	/**
 	 * @param mixed $ville
 	 */
 	public function setVille($ville): void{
-		$this->ville = $ville;
-	}
+                        		$this->ville = $ville;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getCp(){
-		return $this->cp;
-	}
+                        		return $this->cp;
+                        	}
 
 	/**
 	 * @param mixed $cp
 	 */
 	public function setCp($cp): void{
-		$this->cp = $cp;
-	}
+                        		$this->cp = $cp;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getPays(){
-		return $this->pays;
-	}
+                        		return $this->pays;
+                        	}
 
 	/**
 	 * @param mixed $pays
 	 */
 	public function setPays($pays): void{
-		$this->pays = $pays;
-	}
+                        		$this->pays = $pays;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getTel(){
-		return $this->tel;
-	}
+                        		return $this->tel;
+                        	}
 
 	/**
 	 * @param mixed $tel
 	 */
 	public function setTel($tel): void{
-		$this->tel = $tel;
-	}
+                        		$this->tel = $tel;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getMobile(){
-		return $this->mobile;
-	}
+                        		return $this->mobile;
+                        	}
 
 	/**
 	 * @param mixed $mobile
 	 */
 	public function setMobile($mobile): void{
-		$this->mobile = $mobile;
-	}
+                        		$this->mobile = $mobile;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getGroupe(){
-		return $this->groupe;
-	}
+                        		return $this->groupe;
+                        	}
 
 	/**
 	 * @param mixed $groupe
 	 */
 	public function setGroupe($groupe): void{
-		$this->groupe = $groupe;
-	}
+                        		$this->groupe = $groupe;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getConnexion(){
-		return $this->connexion;
-	}
+                        		return $this->connexion;
+                        	}
 
 	/**
 	 * @param mixed $connexion
 	 */
 	public function setConnexion($connexion): void{
-		$this->connexion = $connexion;
-	}
+                        		$this->connexion = $connexion;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getDroit(){
-		return $this->droit;
-	}
+                        		return $this->droit;
+                        	}
 
 	/**
 	 * @param mixed $droit
 	 */
 	public function setDroit($droit): void{
-		$this->droit = $droit;
-	}
+                        		$this->droit = $droit;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getIsValide(){
-		return $this->is_valide;
-	}
+                        		return $this->is_valide;
+                        	}
 
 	/**
 	 * @param mixed $is_valide
 	 */
 	public function setIsValide($is_valide): void{
-		$this->is_valide = $is_valide;
-	}
+                        		$this->is_valide = $is_valide;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getFistCo(){
-		return $this->fist_co;
-	}
+                        		return $this->fist_co;
+                        	}
 
 	/**
 	 * @param mixed $fist_co
 	 */
 	public function setFistCo($fist_co): void{
-		$this->fist_co = $fist_co;
-	}
+                        		$this->fist_co = $fist_co;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getType(){
-		return $this->type;
-	}
+                        		return $this->type;
+                        	}
 
 	/**
 	 * @param mixed $type
 	 */
 	public function setType($type): void{
-		$this->type = $type;
-	}
+                        		$this->type = $type;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getTitre(){
-		return $this->titre;
-	}
+                        		return $this->titre;
+                        	}
 
 	/**
 	 * @param mixed $titre
 	 */
 	public function setTitre($titre): void{
-		$this->titre = $titre;
-	}
+                        		$this->titre = $titre;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getRemarques(){
-		return $this->remarques;
-	}
+                        		return $this->remarques;
+                        	}
 
 	/**
 	 * @param mixed $remarques
 	 */
 	public function setRemarques($remarques): void{
-		$this->remarques = $remarques;
-	}
+                        		$this->remarques = $remarques;
+                        	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getConditions(){
-		return $this->conditions;
-	}
+                        		return $this->conditions;
+                        	}
 
 	/**
 	 * @param mixed $conditions
 	 */
 	public function setConditions($conditions): void{
-		$this->conditions = $conditions;
-	}
+                        		$this->conditions = $conditions;
+                        	}
 
 	/**
 	 * @param array|null $roles
 	 */
 	public function setRoles(array $roles): void{
-		$this->roles = $roles;
-	}
+                        		$this->roles = $roles;
+                        	}
 
 	public function getRoles(): array
-	{
-		$roles = $this->roles;
-		// guarantee every user at least has ROLE_USER
-		if(empty($roles))
-			$roles = ['ROLE_USER'];
-		return array_unique($roles);
-	}
+                        	{
+                        		$roles = $this->roles;
+                        		// guarantee every user at least has ROLE_USER
+                        		if(empty($roles))
+                        			$roles = ['ROLE_USER'];
+                        		return array_unique($roles);
+                        	}
 
 	/**
 	 * Returns the salt that was originally used to encode the password.
@@ -516,8 +528,8 @@ class Users implements UserInterface
 	 * @return string|null The salt
 	 */
 	public function getSalt(){
-		// TODO: Implement getSalt() method.
-	}
+                        		// TODO: Implement getSalt() method.
+                        	}
 
 	/**
 	 * Returns the username used to authenticate the user.
@@ -525,8 +537,8 @@ class Users implements UserInterface
 	 * @return string The username
 	 */
 	public function getUsername(){
-		// TODO: Implement getUsername() method.
-	}
+                        		// TODO: Implement getUsername() method.
+                        	}
 
 	/**
 	 * Removes sensitive data from the user.
@@ -535,6 +547,34 @@ class Users implements UserInterface
 	 * the plain-text password is stored on this object.
 	 */
 	public function eraseCredentials(){
-		// TODO: Implement eraseCredentials() method.
-	}
+                        		// TODO: Implement eraseCredentials() method.
+                        	}
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->addAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->events->contains($event)) {
+            $this->events->removeElement($event);
+            $event->removeAuteur($this);
+        }
+
+        return $this;
+    }
 }

@@ -19,6 +19,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
+// todo crypter les mots de passes
 class LoginFormAuthentificatorAuthenticator extends AbstractFormLoginAuthenticator
 {
     use TargetPathTrait;

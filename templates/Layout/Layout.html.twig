@@ -1,49 +1,70 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<title>Projet arep-cms</title>
-	<link rel="stylesheet" href="{{ asset('css/main.css') }}" />
-	<link rel="stylesheet" href="{{ asset('css/assets.css') }}" />
+    <title>Projet arep-cms</title>
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/assets.css') }}"/>
 </head>
 <body>
 <!--
 todo ici message d'erreur contenu dans les message flash
 -->
+<div class="notificationContainer">
+    {% for erreur in app.flashes('erreur') %}
+        <div class="notification erreur">
+            <span onclick="notificationOut(event)">X</span>
+            {{ erreur }}
+        </div>
+    {% endfor %}
+</div>
+
 
 <div class="navContainer">
-	<div class="nav">
-		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-			<span class="logInfo" >victor FAU</span>
-			<a class="logButton" href="{{ url("app_logout") }}">Déconnexion</a>
-		{% else %}
+    <div class="nav">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <span class="logInfo">victor FAU</span>
+            <a class="logButton" href="{{ url("app_logout") }}">Déconnexion</a>
+        {% else %}
 
-			<a class="logButton" href="{{ url("app_login") }}">Connexion</a>
-		{% endif %}
-	</div>
+            <a class="logButton" href="{{ url("app_login") }}">Connexion</a>
+        {% endif %}
+    </div>
 </div>
 <div class="subNavContainer">
-	<div class="subNav">
-		<div style="text-align: left">
-			<a href="{{ url('FrontOffice_home_index') }}" class="logoLink">
-				<img class="logoImage" src="{{ asset('images/template/logo_default.png') }}" alt="Logo de la societe">
-			</a>
-		</div>
-		<div style="text-align: right">
-			{% if is_granted('ROLE_ADMIN') %}
-				{# todo ici mettre la nav admin #}
-				<a class="navLink" href="{{ url('BackOffice_home_index') }}">Gestion des événements</a>
-			{%else%}
-				{# todo ici mettre la nav général (utilisateur connecté et non connecté) #}
-			{%endif%}
-			test
-		</div>
-	</div>
+    <div class="subNav">
+        <div style="text-align: left">
+            <a href="{{ url('FrontOffice_home_index') }}" class="logoLink">
+                <img class="logoImage" src="{{ asset('images/template/logo_default.png') }}" alt="Logo de la societe">
+            </a>
+        </div>
+        <div style="text-align: right">
+            {% if is_granted('ROLE_ADMIN') %}
+                {# todo ici mettre la nav admin #}
+                <a class="navLink" href="{{ url('BackOffice_home_index') }}">Gestion des événements</a>
+            {% else %}
+                {# todo ici mettre la nav général (utilisateur connecté et non connecté) #}
+                <a href="{# ajouter le lien #}" class="navLink">Accueil</a>
+                <a href="{# ajouter le lien #}" class="navLink">Actualités</a>
+                <a href="{# ajouter le lien #}" class="navLink">Vidéo de la convention</a>
+				<a href="{# ajouter le lien #}" class="navLink">Programme</a>
+                <a href="{# ajouter le lien #}" class="navLink">Hôtellerie et restauration</a>
+                <a href="{# ajouter le lien #}" class="navLink">Infos Pratiques</a>
+				<a href="{# ajouter le lien #}" class="navLink">Espace Presse</a>
+                <a href="{# ajouter le lien #}" class="navLink">Conactez-nous</a>
+            {% endif %}
+        </div>
+    </div>
 </div>
 <div class="applicationContent">
-	{% block content %}
-	{% endblock %}
+    {% block content %}
+    {% endblock %}
 </div>
+<footer>
+    {% if is_granted('ROLE_ADMIN') == false %}
+        footer
+    {% endif %}
+</footer>
 
-
+<script src="{{ asset('js/notification.js') }}"></script>
 </body>
 </html>
