@@ -17,6 +17,7 @@ class EventFixture extends Fixture implements OrderedFixtureInterface
     	$faker = Faker\Factory::create();
          $event = new Event();
          $event->setId(1);
+         $event->addAuteur($this->getReference(UsersFixture::USERFIXTURE));
          $event->setNom("Nom de l'événement");
          $event->setCreation($faker->dateTimeThisYear($max = 'now', $timezone = null));
          $event->setDescription(Lorem::text());
