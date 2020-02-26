@@ -7,6 +7,8 @@ security:
                     # the property to query by - e.g. username, email, etc
                     property: email
 
+    session_fixation_strategy: migrate
+
     encoders:
         App\Entity\Users:
             algorithm: bcrypt

@@ -72,3 +72,29 @@
 /*=======================*/
 /*         Body          */
 /*=======================*/
+
+/*=======================*/
+/*       Connexion       */
+/*=======================*/
+#loginForm{
+    text-align: center;
+    height: 540px;
+    width: 500px;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    margin-right: -250px;
+    margin-top: -270px;
+    margin-bottom: 2em;
+}
+#loginFormContent{
+    margin-bottom: 2em;
+}
+.inputConnexion{
+    margin-bottom: 20px;
+}
+
+#imageConnexion{
+    margin: 0 auto 20px auto;
+    width: 275px;
+}
