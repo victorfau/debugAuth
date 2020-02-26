@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  */
-class Users
+class Users implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -135,6 +136,11 @@ class Users
      * @ORM\Column(type="boolean", options={"default" : false})
      */
     private $conditions;
+
+    /**
+	 * @ORM\Column(type="json")
+	 */
+	private $roles = [];
 
 	/**
 	 * @return mixed
@@ -484,5 +490,51 @@ class Users
 	 */
 	public function setConditions($conditions): void{
 		$this->conditions = $conditions;
+	}
+
+	/**
+	 * @param array|null $roles
+	 */
+	public function setRoles(array $roles): void{
+		$this->roles = $roles;
+	}
+
+	public function getRoles(): array
+	{
+		$roles = $this->roles;
+		// guarantee every user at least has ROLE_USER
+		if(empty($roles))
+			$roles = ['ROLE_USER'];
+		return array_unique($roles);
+	}
+
+	/**
+	 * Returns the salt that was originally used to encode the password.
+	 *
+	 * This can return null if the password was not encoded using a salt.
+	 *
+	 * @return string|null The salt
+	 */
+	public function getSalt(){
+		// TODO: Implement getSalt() method.
+	}
+
+	/**
+	 * Returns the username used to authenticate the user.
+	 *
+	 * @return string The username
+	 */
+	public function getUsername(){
+		// TODO: Implement getUsername() method.
+	}
+
+	/**
+	 * Removes sensitive data from the user.
+	 *
+	 * This is important if, at any given point, sensitive information like
+	 * the plain-text password is stored on this object.
+	 */
+	public function eraseCredentials(){
+		// TODO: Implement eraseCredentials() method.
 	}
 }

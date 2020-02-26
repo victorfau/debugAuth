@@ -1,13 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 	<title>Projet arep-cms</title>
+	<link rel="stylesheet" href="{{ asset('css/main.css') }}" />
 </head>
 <body>
 <!--
 todo ici message d'erreur contenu dans les message flash
 -->
+
+<div class="navContainer">
+	<div class="nav">
+		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+			<span class="logInfo" >victor FAU</span>
+			<a class="logButton" href="{{ url("app_logout") }}">Déconnexion</a>
+		{% else %}
+
+			<a class="logButton" href="{{ url("app_login") }}">Connexion</a>
+		{% endif %}
+	</div>
+</div>
+<div class="subNavContainer">
+	<div class="subNav">
+		<div style="text-align: left">
+			<a href="#" class="logoLink">
+				<img class="logoImage" src="{{ asset('images/template/logo_default.png') }}" alt="Logo de la societe">
+			</a>
+		</div>
+		<div style="text-align: right">
+			{% if is_granted('ROLE_ADMIN') %}
+				{# todo ici mettre la nav admin #}
+			{%else%}
+				{# todo ici mettre la nav général (utilisateur connecté et non connecté) #}
+			{%endif%}
+		</div>
+	</div>
+</div>
+
 {% block content %}
 {% endblock %}
+
 </body>
 </html>
