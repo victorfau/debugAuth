@@ -57,6 +57,18 @@
     max-height: 200px;
 }
 
+.navLink{
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 0.5em;
+    color: #FFFFFF;
+    font-size: 0.75em;
+    transition: color 0.2s ease-in-out;
+}
+.navLink:hover{
+    color: #fedc32;
+}
+
 /*=======================*/
 /*         Body          */
 /*=======================*/

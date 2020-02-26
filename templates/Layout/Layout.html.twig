@@ -23,16 +23,18 @@ todo ici message d'erreur contenu dans les message flash
 <div class="subNavContainer">
 	<div class="subNav">
 		<div style="text-align: left">
-			<a href="#" class="logoLink">
+			<a href="{{ url('FrontOffice_home_index') }}" class="logoLink">
 				<img class="logoImage" src="{{ asset('images/template/logo_default.png') }}" alt="Logo de la societe">
 			</a>
 		</div>
 		<div style="text-align: right">
 			{% if is_granted('ROLE_ADMIN') %}
 				{# todo ici mettre la nav admin #}
+				<a class="navLink" href="{{ url('BackOffice_home_index') }}">Gestion des événements</a>
 			{%else%}
 				{# todo ici mettre la nav général (utilisateur connecté et non connecté) #}
 			{%endif%}
+			test
 		</div>
 	</div>
 </div>
