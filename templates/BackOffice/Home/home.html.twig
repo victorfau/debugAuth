@@ -1,5 +1,33 @@
 {% extends 'Layout/Layout.html.twig' %}
 
 {% block content %}
-    <h1>backend</h1>
+    <div class="container">
+        <h2>Gestion des événements</h2>
+        <a class="btn-black addEvent" href="{# todo quand page ajout event alors faire le lien #}">Ajouter un événement</a>
+        <hr />
+        <table>
+            <thead>
+            <tr>
+                <th style="width: 200px">Nom de l'événement</th>
+                <th style="width: 140px">Créé le</th>
+                <th style="width: 140px">Par</th>
+                <th>Description</th>
+                <th style="width: 140px">Date</th>
+                <th style="width: 220px; text-align: center"></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {# todo quand la route sera faite, faire le foreach #}
+                    <td class="tdTitle">convention Socoda</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 {% endblock %}

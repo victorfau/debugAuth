@@ -73,6 +73,16 @@
 /*         Body          */
 /*=======================*/
 
+.applicationContent{
+    margin-top: 40px;
+    padding: 6em 0;
+    text-align: center;
+}
+
+.addEvent{
+    width: 80%;
+}
+
 /*=======================*/
 /*       Connexion       */
 /*=======================*/
