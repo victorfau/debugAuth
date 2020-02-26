@@ -1,23 +1,34 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        database_provider:
+            entity:
+                class: App\Entity\Users
+                    # the property to query by - e.g. username, email, etc
+                    property: email
+
+    encoders:
+        App\Entity\Users:
+            algorithm: bcrypt
+
+    role_hierarchy:
+        ROLE_CLIENT:      ROLE_USER
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_DEV: [ROLE_USER, ROLE_ADMIN]
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: lazy
-            provider: users_in_memory
-
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#firewalls-authentication
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
-
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
+            provider: database_provider
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthentificatorAuthenticator
+            logout:
+                path: app_logout
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+          - { path: ^/backoffice, roles: ROLE_ADMIN }
+          - { path: ^/profile, roles: ROLE_USER }
+          - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
