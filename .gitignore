@@ -27,4 +27,4 @@
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 
-src/Migration/*
+src/Migrations/*
