@@ -31,6 +31,6 @@ security:
             logout:
                 path: app_logout
     access_control:
-          - { path: ^/backoffice, roles: ROLE_ADMIN }
-          - { path: ^/profile, roles: ROLE_USER }
-          - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+          #- { path: ^/backoffice, roles: ROLE_ADMIN }
+          #- { path: ^/profile, roles: ROLE_USER }
+          #- { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
