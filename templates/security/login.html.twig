@@ -6,10 +6,11 @@
 
 {% block content %}
     <div id="loginForm">
+        {{ dump(error) }}
         <img id="imageConnexion" src="{{ asset('images/template/logo_default.png') }}" alt="">
         <div id="loginFormContent">
             <form method="post">
-                <input class="inputConnexion" type="email" value="{{ last_username }}" name="email" id="inputEmail" required autofocus>
+                <input class="inputConnexion" type="text" name="email" id="inputEmail" required autofocus>
                 <input class="inputConnexion" type="password" name="password" id="inputPassword" required>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                 <button class="btn" type="submit">Sign in</button>

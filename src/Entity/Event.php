@@ -9,13 +9,25 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
  */
-class Event {
-	/**
-	 * @ORM\Id()
-	 * @ORM\GeneratedValue()
-	 * @ORM\Column(type="integer")
-	 */
-	private $id;
+class Event
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="users")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="author")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
 
 	/**
 	 * @ORM\Column(type="string", length=255)
@@ -23,14 +35,14 @@ class Event {
 	private $nom;
 
 	/**
-	 * @ORM\Column(type="date")
-	 */
-	private $creation;
-
-	/**
 	 * @ORM\Column(type="text", nullable=true)
 	 */
 	private $description;
+
+	/**
+	 * @ORM\Column(type="date")
+	 */
+	private $creation;
 
 	/**
 	 * @ORM\Column(type="date", nullable=true)
@@ -60,7 +72,7 @@ class Event {
 	/**
 	 * @ORM\Column(type="boolean", options={"default" : false})
 	 */
-	private $opt_infoprat;
+	private $opt_infopratique;
 
 	/**
 	 * @ORM\Column(type="boolean", options={"default" : false})
@@ -87,287 +99,249 @@ class Event {
 	 */
 	private $opt_transport;
 
-	/**
-	 * @ORM\ManyToMany(targetEntity="App\Entity\Users", inversedBy="events")
-	 */
-	private $auteur;
 
-	public function __construct(){
-		$this->auteur = new ArrayCollection();
-	}
+	public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getusers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+        }
+
+        return $this;
+    }
+
+    public function getAuteur(): ?User
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?User $auteur): self
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
 
 	/**
-	 * @param mixed $id
+	 * @return mixed
 	 */
-	public function setId($id): void{
-		$this->id = $id;
-	}
-
-	/**
-	 * @return int|null
-	 */
-	public function getId(): ?int{
-		return $this->id;
-	}
-
-	/**
-	 * @return string|null
-	 */
-	public function getNom(): ?string{
+	public function getNom(){
 		return $this->nom;
 	}
 
 	/**
-	 * @param string $nom
-	 * @return $this
+	 * @param mixed $nom
 	 */
-	public function setNom(string $nom): self{
+	public function setNom($nom): void{
 		$this->nom = $nom;
-
-		return $this;
 	}
 
 	/**
-	 * @return \DateTimeInterface|null
+	 * @return mixed
 	 */
-	public function getCreation(): ?\DateTimeInterface{
-		return $this->creation;
-	}
-
-	/**
-	 * @param \DateTimeInterface $creation
-	 * @return $this
-	 */
-	public function setCreation(\DateTimeInterface $creation): self{
-		$this->creation = $creation;
-
-		return $this;
-	}
-
-	/**
-	 * @return string|null
-	 */
-	public function getDescription(): ?string{
+	public function getDescription(){
 		return $this->description;
 	}
 
 	/**
-	 * @param string|null $description
-	 * @return $this
+	 * @param mixed $description
 	 */
-	public function setDescription(?string $description): self{
+	public function setDescription($description): void{
 		$this->description = $description;
-
-		return $this;
 	}
 
 	/**
-	 * @return \DateTimeInterface|null
+	 * @return mixed
 	 */
-	public function getDateIn(): ?\DateTimeInterface{
+	public function getCreation(){
+		return $this->creation;
+	}
+
+	/**
+	 * @param mixed $creation
+	 */
+	public function setCreation($creation): void{
+		$this->creation = $creation;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getDateIn(){
 		return $this->date_in;
 	}
 
 	/**
-	 * @param \DateTimeInterface|null $date_in
-	 * @return $this
+	 * @param mixed $date_in
 	 */
-	public function setDateIn(?\DateTimeInterface $date_in): self{
+	public function setDateIn($date_in): void{
 		$this->date_in = $date_in;
-
-		return $this;
 	}
 
 	/**
-	 * @return \DateTimeInterface|null
+	 * @return mixed
 	 */
-	public function getDateOut(): ?\DateTimeInterface{
+	public function getDateOut(){
 		return $this->date_out;
 	}
 
 	/**
-	 * @param \DateTimeInterface|null $date_out
-	 * @return $this
+	 * @param mixed $date_out
 	 */
-	public function setDateOut(?\DateTimeInterface $date_out): self{
+	public function setDateOut($date_out): void{
 		$this->date_out = $date_out;
-
-		return $this;
 	}
 
 	/**
-	 * @return bool|null
+	 * @return mixed
 	 */
-	public function getOptAccueil(): ?bool{
+	public function getOptAccueil(){
 		return $this->opt_accueil;
 	}
 
 	/**
-	 * @param bool $opt_accueil
-	 * @return $this
+	 * @param mixed $opt_accueil
 	 */
-	public function setOptAccueil(bool $opt_accueil): self{
+	public function setOptAccueil($opt_accueil): void{
 		$this->opt_accueil = $opt_accueil;
-
-		return $this;
 	}
 
 	/**
-	 * @return bool|null
+	 * @return mixed
 	 */
-	public function getOptActualites(): ?bool{
+	public function getOptActualites(){
 		return $this->opt_actualites;
 	}
 
 	/**
-	 * @param bool $opt_actualites
-	 * @return $this
+	 * @param mixed $opt_actualites
 	 */
-	public function setOptActualites(bool $opt_actualites): self{
+	public function setOptActualites($opt_actualites): void{
 		$this->opt_actualites = $opt_actualites;
-
-		return $this;
 	}
 
 	/**
-	 * @return bool|null
+	 * @return mixed
 	 */
-	public function getOptHebergement(): ?bool{
+	public function getOptHebergement(){
 		return $this->opt_hebergement;
 	}
 
 	/**
-	 * @param bool $opt_hebergement
-	 * @return $this
+	 * @param mixed $opt_hebergement
 	 */
-	public function setOptHebergement(bool $opt_hebergement): self{
+	public function setOptHebergement($opt_hebergement): void{
 		$this->opt_hebergement = $opt_hebergement;
-
-		return $this;
 	}
 
 	/**
-	 * @return bool|null
+	 * @return mixed
 	 */
-	public function getOptInfoprat(): ?bool{
-		return $this->opt_infoprat;
+	public function getOptInfopratique(){
+		return $this->opt_infopratique;
 	}
 
 	/**
-	 * @param bool $opt_infoprat
-	 * @return $this
+	 * @param mixed $opt_infopratique
 	 */
-	public function setOptInfoprat(bool $opt_infoprat): self{
-		$this->opt_infoprat = $opt_infoprat;
-
-		return $this;
+	public function setOptInfopratique($opt_infopratique): void{
+		$this->opt_infopratique = $opt_infopratique;
 	}
 
 	/**
-	 * @return bool|null
+	 * @return mixed
 	 */
-	public function getOptPresse(): ?bool{
+	public function getOptPresse(){
 		return $this->opt_presse;
 	}
 
 	/**
-	 * @param bool $opt_presse
-	 * @return $this
+	 * @param mixed $opt_presse
 	 */
-	public function setOptPresse(bool $opt_presse): self{
+	public function setOptPresse($opt_presse): void{
 		$this->opt_presse = $opt_presse;
-
-		return $this;
 	}
 
 	/**
-	 * @return bool|null
+	 * @return mixed
 	 */
-	public function getOptContact(): ?bool{
+	public function getOptContact(){
 		return $this->opt_contact;
 	}
 
 	/**
-	 * @param bool $opt_contact
-	 * @return $this
+	 * @param mixed $opt_contact
 	 */
-	public function setOptContact(bool $opt_contact): self{
+	public function setOptContact($opt_contact): void{
 		$this->opt_contact = $opt_contact;
-
-		return $this;
 	}
 
 	/**
-	 * @return bool|null
+	 * @return mixed
 	 */
-	public function getOptInscription(): ?bool{
+	public function getOptInscription(){
 		return $this->opt_inscription;
 	}
 
 	/**
-	 * @param bool $opt_inscription
-	 * @return $this
+	 * @param mixed $opt_inscription
 	 */
-	public function setOptInscription(bool $opt_inscription): self{
+	public function setOptInscription($opt_inscription): void{
 		$this->opt_inscription = $opt_inscription;
-
-		return $this;
 	}
 
 	/**
-	 * @return bool|null
+	 * @return mixed
 	 */
-	public function getOptActivites(): ?bool{
+	public function getOptActivites(){
 		return $this->opt_activites;
 	}
 
 	/**
-	 * @param bool $opt_activites
-	 * @return $this
+	 * @param mixed $opt_activites
 	 */
-	public function setOptActivites(bool $opt_activites): self{
+	public function setOptActivites($opt_activites): void{
 		$this->opt_activites = $opt_activites;
-
-		return $this;
 	}
 
 	/**
-	 * @return bool|null
+	 * @return mixed
 	 */
-	public function getOptTransport(): ?bool{
+	public function getOptTransport(){
 		return $this->opt_transport;
 	}
 
 	/**
-	 * @param bool $opt_transport
-	 * @return $this
+	 * @param mixed $opt_transport
 	 */
-	public function setOptTransport(bool $opt_transport): self{
+	public function setOptTransport($opt_transport): void{
 		$this->opt_transport = $opt_transport;
-
-		return $this;
 	}
 
-	/**
-	 * @return Collection|Users[]
-	 */
-	public function getAuteur(): Collection{
-		return $this->auteur;
-	}
-
-	public function addAuteur(Users $auteur): self{
-		if(!$this->auteur->contains($auteur)){
-			$this->auteur[] = $auteur;
-		}
-
-		return $this;
-	}
-
-	public function removeAuteur(Users $auteur): self{
-		if($this->auteur->contains($auteur)){
-			$this->auteur->removeElement($auteur);
-		}
-
-		return $this;
-	}
 }
