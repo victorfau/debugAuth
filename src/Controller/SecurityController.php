@@ -9,18 +9,28 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+    /**
+     * @Route("/login", name="app_login")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
+     */
+    public function login (AuthenticationUtils $authenticationUtils){
+        return $this->render('security/login.html.twig');
+    }
+    
 	/**
-	 * @Route("/login", name="app_login")
+	 * @Route("/old/login", name="app_login_old")
 	 * @param AuthenticationUtils $authenticationUtils
 	 * @return Response
 	 */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function _old_login(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
 
         // get the login error if there is one
+        // todo remplacer avec un message flash
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();

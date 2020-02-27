@@ -4,33 +4,33 @@ security:
         database_provider:
             entity:
                 class: App\Entity\Users
-                    # the property to query by - e.g. username, email, etc
-                    property: email
-
-    session_fixation_strategy: migrate
+                property: email
 
     encoders:
-        App\Entity\Users:
-            algorithm: bcrypt
+        App\Entity\Users: plaintext
+    #            algorithm: plaintext
 
     role_hierarchy:
         ROLE_CLIENT:      ROLE_USER
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_DEV: [ROLE_USER, ROLE_ADMIN]
+        ROLE_ADMIN:       ROLE_CLIENT
+        ROLE_DEV: [ROLE_CLIENT, ROLE_ADMIN]
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: lazy
-            provider: database_provider
-            guard:
-                authenticators:
-                    - App\Security\LoginFormAuthentificatorAuthenticator
+            anonymous: true
             logout:
                 path: app_logout
+                target: /
+            provider: database_provider
+            form_login:
+                login_path: app_login
+                check_path: app_login
+                username_parameter: email
+                password_parameter: password
     access_control:
           - { path: ^/backoffice, roles: ROLE_ADMIN }
           - { path: ^/profile, roles: ROLE_USER }
-          - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        #  - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
