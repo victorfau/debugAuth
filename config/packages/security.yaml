@@ -7,11 +7,9 @@ security:
                     # the property to query by - e.g. username, email, etc
                     property: email
 
-    session_fixation_strategy: migrate
-
     encoders:
-        App\Entity\Users:
-            algorithm: bcrypt
+        App\Entity\Users: plaintext
+            #algorithm: bcrypt
 
     role_hierarchy:
         ROLE_CLIENT:      ROLE_USER
@@ -25,12 +23,14 @@ security:
         main:
             anonymous: lazy
             provider: database_provider
-            guard:
-                authenticators:
-                    - App\Security\LoginFormAuthentificatorAuthenticator
+            form_login:
+                username_parameter:   email
+                password_parameter:   password
+                login_path: app_login
+                check_path: app_login
             logout:
                 path: app_logout
     access_control:
           - { path: ^/backoffice, roles: ROLE_ADMIN }
           - { path: ^/profile, roles: ROLE_USER }
-          - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+     #    - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
