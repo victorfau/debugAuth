@@ -17,8 +17,8 @@ class HomeController extends AbstractController {
      * @return Response
      */
 	public function index(Request $request): Response{
-	    $session = $request->getSession();
-	    dd($session);
+		dd($this->getUser());
+
 		return $this->render('BackOffice/Home/home.html.twig');
 	}
 }

@@ -1,19 +1,16 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        database_provider:
+        inDatabase:
             entity:
-                class: App\Entity\Users
+                class:  App\Entity\User
                 property: email
 
     encoders:
-        App\Entity\Users: plaintext
-    #            algorithm: plaintext
+        App\Entity\User: plaintext
 
     role_hierarchy:
-        ROLE_CLIENT:      ROLE_USER
-        ROLE_ADMIN:       ROLE_CLIENT
-        ROLE_DEV: [ROLE_CLIENT, ROLE_ADMIN]
+        ROLE_ADMIN: ROLE_USER
+        ROLE_DEV: [ROLE_USER, ROLE_ADMIN]
 
     firewalls:
         dev:
@@ -21,16 +18,17 @@ security:
             security: false
         main:
             anonymous: true
-            logout:
-                path: app_logout
-                target: /
-            provider: database_provider
+            provider: inDatabase
             form_login:
-                login_path: app_login
-                check_path: app_login
+                check_path: security_login
+                login_path: security_login
+                default_target_path: /backoffice
                 username_parameter: email
                 password_parameter: password
+                csrf_parameter: _csrf_security_token
+            logout:
+                path: security_logout
+
     access_control:
-          - { path: ^/backoffice, roles: ROLE_ADMIN }
-          - { path: ^/profile, roles: ROLE_USER }
-        #  - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/backoffice, roles: ROLE_ADMIN }
+    # - { path: ^/profile, roles: ROLE_USER }

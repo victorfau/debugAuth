@@ -23,10 +23,10 @@ todo ici message d'erreur contenu dans les message flash
     <div class="nav">
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <span class="logInfo">victor FAU</span>
-            <a class="logButton" href="{{ url("app_logout") }}">Déconnexion</a>
+            <a class="logButton" href="{{ url("security_logout") }}">Déconnexion</a>
         {% else %}
 
-            <a class="logButton" href="{{ url("app_login") }}">Connexion</a>
+            <a class="logButton" href="{{ url("security_login") }}">Connexion</a>
         {% endif %}
     </div>
 </div>
