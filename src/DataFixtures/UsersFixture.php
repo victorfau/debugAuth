@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Users;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -14,7 +14,7 @@ class UsersFixture extends Fixture implements OrderedFixtureInterface {
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager): void{
-        $user = new Users();
+        $user = new User();
         $user->setEmail('v.fau@arep.co.com');
         $user->setNom('fau');
         $user->setPrenom('Victor');
