@@ -1,10 +1,12 @@
 {% extends 'Layout/Layout.html.twig' %}
 
 {% block content %}
+    {{ dump(events) }}
     <div class="container">
         <h2>Gestion des événements</h2>
-        <a class="btn-black addEvent" href="{# todo quand page ajout event alors faire le lien #}">Ajouter un événement</a>
-        <hr />
+        <a class="btn-black addEvent" href="{# todo quand page ajout event alors faire le lien #}">Ajouter un
+            événement</a>
+        <hr/>
         <table>
             <thead>
             <tr>
@@ -17,15 +19,17 @@
             </tr>
             </thead>
             <tbody>
+            {% for event in events %}
                 <tr>
                     {# todo quand la route sera faite, faire le foreach #}
-                    <td class="tdTitle">convention Socoda</td>
+                    <td class="tdTitle">{{ event.nom }}</td>
                     <td>test</td>
-                    <td>test</td>
-                    <td>test</td>
+                    <td>{{ event.auteur.prenom }} {{ event.auteur.nom | upper }}</td>
+                    <td>{{event.description}}</td>
                     <td>test</td>
                     <td>test</td>
                 </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
