@@ -4,20 +4,12 @@
     <title>Projet arep-cms</title>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/assets.css') }}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <!--
-todo ici message d'erreur contenu dans les message flash
+todo dans un nouveau fichier a inclure message d'erreur contenu dans les message flash
 -->
-<div class="notificationContainer">
-    {% for erreur in app.flashes('erreur') %}
-        <div class="notification erreur">
-            <span onclick="notificationOut(event)">X</span>
-            {{ erreur }}
-        </div>
-    {% endfor %}
-</div>
-
 
 <div class="navContainer">
     <div class="nav">
