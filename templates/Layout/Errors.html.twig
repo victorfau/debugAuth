@@ -1,8 +1,8 @@
 {% macro Errors() %}
     <div class="notificationContainer">
 
-    {% if app.flashes('errors') is defined %}
-        {% for error in app.flashes('errors') %}
+    {% if app.flashes('error') is defined %}
+        {% for error in app.flashes('error') %}
             <div class="error notification">
                 {{ error }}
             </div>
