@@ -4,7 +4,7 @@
     <title>Projet arep-cms</title>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/assets.css') }}"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
 </head>
 <body>
 <!--
@@ -14,7 +14,7 @@ todo dans un nouveau fichier a inclure message d'erreur contenu dans les message
 <div class="navContainer">
     <div class="nav">
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <span class="logInfo">victor FAU</span>
+            <span class="logInfo">{{ app.user.prenom }} {{ app.user.nom | upper }}</span>
             <a class="logButton" href="{{ url("security_logout") }}">Déconnexion</a>
         {% else %}
 
