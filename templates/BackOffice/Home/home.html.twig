@@ -4,8 +4,9 @@
     {{ dump(events) }}
     <div class="container">
         <h2>Gestion des événements</h2>
-        <a class="btn-black addEvent" href="{# todo quand page ajout event alors faire le lien #}">Ajouter un
-            événement</a>
+        <button class="btn-black addEvent" {# todo quand page ajout event alors faire le lien #}>
+            Ajouter un événement
+        </button>
         <hr/>
         <table>
             <thead>
@@ -23,11 +24,13 @@
                 <tr>
                     {# todo quand la route sera faite, faire le foreach #}
                     <td class="tdTitle">{{ event.nom }}</td>
-                    <td>test</td>
+                    <td>{{ event.creation.date | format_datetime('short', 'none', locale='fr') }}</td>
                     <td>{{ event.auteur.prenom }} {{ event.auteur.nom | upper }}</td>
-                    <td>{{event.description}}</td>
-                    <td>test</td>
-                    <td>test</td>
+                    <td>{{ event.description }}</td>
+                    <td>{{ event.datein.date | format_datetime('short', 'none', locale='fr') }}</td>
+                    <td>
+                        <i class="fas fa-cog"></i>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
