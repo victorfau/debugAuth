@@ -1,4 +1,5 @@
 {% extends 'Layout/Layout.html.twig' %}
+{% from "Layout/Errors.html.twig" import Errors, Success %}
 
 {% block content %}
     {{ dump(events) }}
@@ -7,6 +8,8 @@
         <button class="btn-black addEvent" {# todo quand page ajout event alors faire le lien #}>
             Ajouter un événement
         </button>
+        {{ Errors() }}
+        {{ Success() }}
         <hr/>
         <table>
             <thead>

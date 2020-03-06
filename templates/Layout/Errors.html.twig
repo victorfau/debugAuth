@@ -1,0 +1,25 @@
+{% macro Errors() %}
+    <div class="notificationContainer">
+
+    {% if app.flashes('errors') is defined %}
+        {% for error in app.flashes('errors') %}
+            <div class="error notification">
+                {{ error }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+{% endmacro %}
+
+{% macro Success() %}
+    <div class="notificationContainer">
+
+        {% if app.flashes('success') is defined %}
+            {% for error in app.flashes('success') %}
+                <div class="error notification">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endmacro %}
