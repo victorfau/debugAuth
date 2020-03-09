@@ -24,6 +24,24 @@ Les différents rôles sont les suivants :
 |ROLE_ADMIN| Peut accéder à l'application et peut modifier en profindeur le cotenu de l'application |
 |ROLE_DEV|Permet de pouvoir accéder à toute l'application sans distinction de droit.|
 
-## Gestions des erreurs 
+## Gestions des notifications
 
-Les erreurs sont générées avec la fonction de message flash intégré dans Symfony. 
+### Dans l'interface
+Pour afficher les erreurs dans l'interface, il faut ajouter les messages dans le flash intégré dans Symfony avec la ligne : 
+```php
+$this->addFlash('error', 'message');
+```
+Et pour les messages de succes, il faut les ajouter de cette manière
+
+```php
+$this->addFlash('success', 'message');
+```
+
+Dans les templates, pour afficher les notifications, il faut importer les modules concernés, puis placer les macros dans la vue : 
+
+```twig
+{% from "Layout/Errors.html.twig" import Errors, Success %}
+
+{{ Errors() }}
+{{ Success() }}
+```

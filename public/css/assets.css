@@ -107,56 +107,24 @@ table tbody .tdAction{
     text-align: right;
     width: 250px;
 }
-
-.notificationContainer{
-    position: fixed;
-    z-index: 100000;
-    right: 2em;
-    height: 80%;
-    top: 10%;
-    width: 20%;
-}
-
 .notification{
-    animation: fadeIn ease-in-out 0.3s;
-    border: solid 1px black;
-    height: 5.5em;
-    width: 17em;
+    text-align: left;
+    min-height: 3em;
+    width: 80%;
     border-radius: 1em;
-    margin-bottom: 2em;
+    margin: 1em auto;
     padding: 10px;
 }
-.fadeOut{
-    animation: fadeOut ease-in-out 0.3s;
-    animation-fill-mode: forwards;
-    display: none;
+.error{
+    color: red;
+    border: solid 1px red;
 }
-.displayNone{display: none;}
-.notification span{
-    float: right;
-    cursor: pointer;
+.error{
+    color: green;
+    border: solid 1px green;
 }
 
-@keyframes fadeIn{
-    0% {
-        opacity:0;
-    }
-    100% {
-        opacity:1;
-    }
-}
-@keyframes fadeOut{
-    0% {
-        opacity:1;
-    }
-    99% {
-        opacity:0;
-    }
-    100%{
-        display: none;
-    }
-}
-.erreur{
-    background-color: rgba(231,76,60 ,0.8);
-    border: red;
+.fas{
+    color: black;
+    cursor: pointer;
 }
