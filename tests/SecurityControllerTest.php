@@ -11,11 +11,12 @@ class SecurityControllerTest extends WebTestCase {
 
 	public function __construct ($name = null, array $data = [], $dataName = ''){
 		parent::__construct($name, $data, $dataName);
-		$this->client = static::createClient();
+
 	}
 
 	public function testPageAffiche (){
+		$this->client = static::createClient();
 		$this->client->request('GET', '/login');
-		$this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+		self::assertEquals(200, $this->client->getResponse()->getStatusCode());
 	}
 }

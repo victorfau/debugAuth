@@ -15,12 +15,12 @@ class UsersFixture extends Fixture implements OrderedFixtureInterface {
      */
     public function load(ObjectManager $manager): void{
         $user = new User();
-        $user->setEmail('v.fau@arep.co.com');
-        $user->setNom('fau');
-        $user->setPrenom('Victor');
+        $user->setEmail('admin@arep.co.com');
+        $user->setNom('admin');
+        $user->setPrenom('Admin');
         $user->setRoles(['ROLE_ADMIN']);
         $user->setPassword('password');
-        //$user->setParticipation(false);
+        $user->setParticipation(false);
         $user->setIsValide(false);
         $user->setConditions(false);
         $user->setRoles(['ROLE_ADMIN']);
